@@ -17,3 +17,5 @@ WORKDIR /webapps
 
 EXPOSE 50051
 
+CMD [ "python3", "main.py" ]
+
