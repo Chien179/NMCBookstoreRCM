@@ -1,0 +1,20 @@
+version: "3"
+services:
+  rcm_book:
+    image: rcm_book
+    container_name: rcm-book
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - ${PORT}:50051
+    # networks:
+    #   - base-network
+    command: python3 main.py
+
+# networks:
+#   base-network:
+#     external: true
