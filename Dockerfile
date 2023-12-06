@@ -16,6 +16,7 @@ COPY . /webapps
 WORKDIR /webapps
 
 FROM gcr.io/distroless/static-debian11 as runner
+RUN sudo apt install python3 python3-pip
 COPY --from=builder /webapps .
 
 EXPOSE 50051
