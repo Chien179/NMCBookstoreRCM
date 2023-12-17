@@ -1,5 +1,6 @@
 from src.lib.logger import DefaultFormatter
 import logging
+from src.config import config
 import grpc
 from src.pb.rcm_pb2_grpc import add_BookRecommendServicer_to_server
 from src.helper.rcm import RCMHelper
@@ -12,7 +13,7 @@ _cleanup_coroutines = []
 async def serve() -> None:
     server = grpc.aio.server()
     add_BookRecommendServicer_to_server(RCMHelper(), server)
-    listen_addr = "[::]:50051"
+    listen_addr = f"[::]:{config.PORT}"
     server.add_insecure_port(listen_addr)
     logger.info("Starting server on %s", listen_addr)
     await server.start()
