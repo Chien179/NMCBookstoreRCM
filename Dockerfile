@@ -1,4 +1,4 @@
-FROM python:3.10.13-alpine3.18 as builder
+FROM python:3.10.13-alpine3.18
 RUN apk update && apk add --no-cache  tzdata git make  build-base
 
 RUN apk upgrade -U \
@@ -14,10 +14,6 @@ RUN mkdir -p /webapps
 
 COPY . /webapps
 WORKDIR /webapps
-
-FROM gcr.io/distroless/static-debian11 as runner
-RUN sudo apt install python3 python3-pip
-COPY --from=builder /webapps .
 
 EXPOSE 50051
 
