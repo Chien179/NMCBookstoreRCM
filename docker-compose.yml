@@ -10,7 +10,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports:
-      - ${PORT}:50051
+      - ${PORT}:5005
     # networks:
     #   - base-network
     command: python3 main.py

@@ -15,6 +15,7 @@ RUN mkdir -p /webapps
 COPY . /webapps
 WORKDIR /webapps
 
+EXPOSE 5005
+
 CMD [ "python3", "main.py" ]
 
-EXPOSE 50051
