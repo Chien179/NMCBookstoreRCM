@@ -13,6 +13,7 @@ _cleanup_coroutines = []
 async def serve() -> None:
     server = grpc.aio.server()
     add_BookRecommendServicer_to_server(RCMHelper(), server)
+    logger.info(f"my port: {config.PORT}")
     listen_addr = f"[::]:{config.PORT}"
     server.add_insecure_port(listen_addr)
     logger.info("Starting server on %s", listen_addr)
