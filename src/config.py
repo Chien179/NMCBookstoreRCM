@@ -6,7 +6,7 @@ class Config(BaseSettings):
         env_file = ".env"
 
     POSTGRES_URI: str
-    PORT: int = None
+    PORT: int
 
 
 config = Config()
