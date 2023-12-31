@@ -11,5 +11,6 @@ class RCMSchema(BaseModel):
     publisher: str
     image: list
     quantity: int
+    is_deleted: bool
     description: str
     category: str

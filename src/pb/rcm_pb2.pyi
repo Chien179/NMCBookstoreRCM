@@ -14,7 +14,7 @@ class BookRequest(_message.Message):
     def __init__(self, name: _Optional[str] = ..., size: _Optional[int] = ...) -> None: ...
 
 class Books(_message.Message):
-    __slots__ = ["id", "name", "price", "image", "description", "author", "publisher", "quantity", "rating"]
+    __slots__ = ["id", "name", "price", "image", "description", "author", "publisher", "quantity", "rating", "is_deleted"]
     ID_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
     PRICE_FIELD_NUMBER: _ClassVar[int]
@@ -24,6 +24,7 @@ class Books(_message.Message):
     PUBLISHER_FIELD_NUMBER: _ClassVar[int]
     QUANTITY_FIELD_NUMBER: _ClassVar[int]
     RATING_FIELD_NUMBER: _ClassVar[int]
+    IS_DELETED_FIELD_NUMBER: _ClassVar[int]
     id: int
     name: str
     price: float
@@ -33,7 +34,8 @@ class Books(_message.Message):
     publisher: str
     quantity: int
     rating: float
-    def __init__(self, id: _Optional[int] = ..., name: _Optional[str] = ..., price: _Optional[float] = ..., image: _Optional[_Iterable[str]] = ..., description: _Optional[str] = ..., author: _Optional[str] = ..., publisher: _Optional[str] = ..., quantity: _Optional[int] = ..., rating: _Optional[float] = ...) -> None: ...
+    is_deleted: bool
+    def __init__(self, id: _Optional[int] = ..., name: _Optional[str] = ..., price: _Optional[float] = ..., image: _Optional[_Iterable[str]] = ..., description: _Optional[str] = ..., author: _Optional[str] = ..., publisher: _Optional[str] = ..., quantity: _Optional[int] = ..., rating: _Optional[float] = ..., is_deleted: bool = ...) -> None: ...
 
 class BookResponse(_message.Message):
     __slots__ = ["books"]

@@ -6,13 +6,17 @@ from src.lib.logger import logger
 
 
 class RCMHelper(BookRecommendServicer):
+    def __init__(self) -> None:
+        super().__init__()
+        self.rcm = RCMBookHelper()
+    
     async def GetBookRecommend(
         self, request: BookRequest, context: ServicerContext
     ) -> BookResponse:
         req = request
-        rcm = RCMBookHelper()
-        books_rcm = rcm.content_based_recommender(req.name, req.size)
+        books_rcm =self.rcm.content_based_recommender(req.name, req.size)
         results = BookResponse()
+        
         for book in books_rcm:
             b = Books(
                 id=book.get("id"),
@@ -24,6 +28,7 @@ class RCMHelper(BookRecommendServicer):
                 publisher=book.get("publisher"),
                 quantity=book.get("quantity"),
                 rating=book.get("rating"),
+                is_deleted=book.get("is_deleted"),
             )
             results.books.append(b)
         if not results:

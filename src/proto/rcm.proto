@@ -33,6 +33,7 @@ message Books{
   string publisher = 7;
   int32 quantity = 8;
   float rating = 9;
+  bool is_deleted = 10;
 }
 
 message BookResponse {

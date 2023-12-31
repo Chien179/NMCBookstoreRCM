@@ -1,5 +1,5 @@
 -- name: GetBooksRCM :many
-select u.username,
+SELECT u.username,
     b.id,
     r.rating,
     b.name,
@@ -9,13 +9,14 @@ select u.username,
     b.image,
     b.quantity,
     b.description,
-    string_agg(distinct g.name, ',') as category
-from books as b
-    inner join reviews as r on b.id = r.books_id
-    INNER JOIN users as u ON r.username = u.username
-    INNER JOIN books_genres as bg ON b.id = bg.books_id
-    inner join genres as g on bg.genres_id = g.id
-group by u.username,
+    b.is_deleted,
+    string_agg(DISTINCT g.name, ',') AS category
+FROM books AS b
+    INNER JOIN reviews AS r ON b.id = r.books_id
+    INNER JOIN users AS u ON r.username = u.username
+    INNER JOIN books_genres AS bg ON b.id = bg.books_id
+    INNER JOIN genres AS g ON bg.genres_id = g.id
+GROUP BY u.username,
     b.id,
     r.rating,
     b.name,
@@ -24,4 +25,10 @@ group by u.username,
     b.publisher,
     b.quantity,
     b.image,
-    b.description;
+    b.description,
+    b.is_deleted;
+
+-- name: GetReviewsAmount :one
+SELECT COUNT(*) AS amount
+FROM books AS b
+INNER JOIN reviews AS r ON r.books_id = b.id;
